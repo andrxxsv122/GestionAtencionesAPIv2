@@ -26,7 +26,7 @@ API RESTful para gestionar atenciones médicas en una clínica u hospital. Permi
 
 ```bash
 git clone https://github.com/tu-usuario/GestionAtencionesAPIv2.git
-cd gestion-atenciones-api
+cd GestionAtencionesAPIv2
 ```
 
 ### 2. Restaura paquetes y ejecuta
