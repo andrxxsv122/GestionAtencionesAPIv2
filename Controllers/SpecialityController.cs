@@ -5,6 +5,9 @@ using GestionAtencionesAPI.DTO;
 
 namespace GestionAtencionesAPI.Controllers;
 
+/// <summary>
+/// Controlador para gestionar especialidades médicas.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class SpecialityController : ControllerBase
@@ -18,6 +21,9 @@ public class SpecialityController : ControllerBase
         _doctorRepo = doctorRepo;
     }
 
+    /// <summary>
+    /// Obtiene todas las especialidades registradas.
+    /// </summary>
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -28,6 +34,10 @@ public class SpecialityController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Obtiene una especialidad por su ID.
+    /// </summary>
+    /// <param name="id">ID de la especialidad</param>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -38,6 +48,10 @@ public class SpecialityController : ControllerBase
         return Ok(speciality);
     }
 
+    /// <summary>
+    /// Registra una nueva especialidad médica.
+    /// </summary>
+    /// <param name="dto">Datos de la especialidad</param>
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] SpecialityDTO dto)
     {
@@ -66,6 +80,11 @@ public class SpecialityController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Actualiza una especialidad existente por ID.
+    /// </summary>
+    /// <param name="id">ID de la especialidad a actualizar</param>
+    /// <param name="dto">Nuevos datos de la especialidad</param>
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] SpecialityDTO dto)
     {
@@ -95,6 +114,10 @@ public class SpecialityController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Elimina una especialidad por su ID (si no está asociada a doctores).
+    /// </summary>
+    /// <param name="id">ID de la especialidad a eliminar</param>
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {

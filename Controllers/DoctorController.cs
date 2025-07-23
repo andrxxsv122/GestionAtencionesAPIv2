@@ -5,6 +5,9 @@ using GestionAtencionesAPI.DTO;
 
 namespace GestionAtencionesAPI.Controllers;
 
+/// <summary>
+/// Controlador para gestionar doctores en el sistema.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class DoctorController : ControllerBase
@@ -18,6 +21,9 @@ public class DoctorController : ControllerBase
         _appointmentRepo = appointmentRepo;
     }
 
+    /// <summary>
+    /// Obtiene todos los doctores registrados.
+    /// </summary>
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -28,6 +34,10 @@ public class DoctorController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Obtiene un doctor por su ID.
+    /// </summary>
+    /// <param name="id">ID del doctor</param>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -38,6 +48,10 @@ public class DoctorController : ControllerBase
         return Ok(doctor);
     }
 
+    /// <summary>
+    /// Obtiene un doctor por su número de licencia.
+    /// </summary>
+    /// <param name="license">Número de licencia del doctor</param>
     [HttpGet("license/{license}")]
     public async Task<IActionResult> GetByLicense(string license)
     {
@@ -48,6 +62,10 @@ public class DoctorController : ControllerBase
         return Ok(doctor);
     }
 
+    /// <summary>
+    /// Registra un nuevo doctor.
+    /// </summary>
+    /// <param name="dto">Datos del doctor</param>
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] DoctorDTO dto)
     {
@@ -83,6 +101,11 @@ public class DoctorController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Actualiza un doctor existente.
+    /// </summary>
+    /// <param name="id">ID del doctor a actualizar</param>
+    /// <param name="dto">Nuevos datos del doctor</param>
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] DoctorDTO dto)
     {
@@ -116,6 +139,10 @@ public class DoctorController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Elimina un doctor por su ID (solo si no tiene atenciones).
+    /// </summary>
+    /// <param name="id">ID del doctor a eliminar</param>
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {

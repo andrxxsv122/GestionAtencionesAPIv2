@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Http;
 using GestionAtencionesAPI.Repositories;
 using GestionAtencionesAPI.DTO;
 
+/// <summary>
+/// Controlador para gestionar pacientes.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class PatientController : ControllerBase
@@ -17,6 +20,9 @@ public class PatientController : ControllerBase
         _appointmentRepo = appointmentRepo;
     }
 
+    /// <summary>
+    /// Obtiene todos los pacientes registrados.
+    /// </summary>
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -27,6 +33,10 @@ public class PatientController : ControllerBase
         return Ok(patients);
     }
 
+    /// <summary>
+    /// Obtiene un paciente por su ID.
+    /// </summary>
+    /// <param name="id">ID del paciente</param>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -37,6 +47,10 @@ public class PatientController : ControllerBase
         return Ok(patient);
     }
 
+    /// <summary>
+    /// Obtiene un paciente por su RUT.
+    /// </summary>
+    /// <param name="rut">RUT del paciente</param>
     [HttpGet("rut/{rut}")]
     public async Task<IActionResult> GetByRut(string rut)
     {
@@ -47,6 +61,10 @@ public class PatientController : ControllerBase
         return Ok(patient);
     }
 
+    /// <summary>
+    /// Registra un nuevo paciente.
+    /// </summary>
+    /// <param name="dto">Datos del paciente</param>
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] PatientDTO dto)
     {
@@ -85,6 +103,11 @@ public class PatientController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Actualiza los datos de un paciente existente.
+    /// </summary>
+    /// <param name="id">ID del paciente a actualizar</param>
+    /// <param name="dto">Nuevos datos del paciente</param>
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] PatientDTO dto)
     {
@@ -124,6 +147,10 @@ public class PatientController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Elimina un paciente por su ID (si no tiene atenciones registradas).
+    /// </summary>
+    /// <param name="id">ID del paciente a eliminar</param>
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {

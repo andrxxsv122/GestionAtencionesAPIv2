@@ -6,6 +6,9 @@ using System.Data.SqlClient;
 
 namespace GestionAtencionesAPI.Controllers;
 
+/// <summary>
+/// Controlador para gestionar atenciones médicas.
+/// </summary>
 [ApiController]
 [Route("api/[controller]")]
 public class AppointmentController : ControllerBase
@@ -17,6 +20,9 @@ public class AppointmentController : ControllerBase
         _repo = repo;
     }
 
+    /// <summary>
+    /// Obtiene todas las atenciones registradas.
+    /// </summary>
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -27,6 +33,10 @@ public class AppointmentController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Obtiene una atención por su ID.
+    /// </summary>
+    /// <param name="id">ID de la atención</param>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -37,6 +47,10 @@ public class AppointmentController : ControllerBase
         return Ok(appointment);
     }
 
+    /// <summary>
+    /// Obtiene las atenciones registradas para una fecha específica.
+    /// </summary>
+    /// <param name="date">Fecha de la atención (formato: yyyy-MM-dd)</param>
     [HttpGet("date/{date}")]
     public async Task<IActionResult> GetByDate(DateTime date)
     {
@@ -46,7 +60,10 @@ public class AppointmentController : ControllerBase
 
         return Ok(result);
     }
-
+    /// <summary>
+    /// Obtiene las atenciones realizadas por un doctor específico.
+    /// </summary>
+    /// <param name="doctorId">ID del doctor</param>
     [HttpGet("doctor/{doctorId}")]
     public async Task<IActionResult> GetByDoctor(int doctorId)
     {
@@ -57,6 +74,10 @@ public class AppointmentController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Obtiene las atenciones realizadas a un paciente específico.
+    /// </summary>
+    /// <param name="patientId">ID del paciente</param>
     [HttpGet("patient/{patientId}")]
     public async Task<IActionResult> GetByPatient(int patientId)
     {
@@ -67,6 +88,10 @@ public class AppointmentController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Obtiene las atenciones asociadas a una especialidad.
+    /// </summary>
+    /// <param name="specialityId">ID de la especialidad</param>
     [HttpGet("speciality/{specialityId}")]
     public async Task<IActionResult> GetBySpeciality(int specialityId)
     {
@@ -77,6 +102,10 @@ public class AppointmentController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Obtiene la duración promedio de las atenciones por especialidad.
+    /// </summary>
+    /// <param name="specialityId">ID de la especialidad</param>
     [HttpGet("average-duration/{specialityId}")]
     public async Task<IActionResult> GetAverageDuration(int specialityId)
     {
@@ -92,6 +121,11 @@ public class AppointmentController : ControllerBase
         });
     }
 
+
+    /// <summary>
+    /// Registra una nueva atención médica.
+    /// </summary>
+    /// <param name="dto">Datos de la atención a registrar</param>
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] AppointmentDTO dto)
     {
@@ -120,6 +154,11 @@ public class AppointmentController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Actualiza una atención existente por ID.
+    /// </summary>
+    /// <param name="id">ID de la atención</param>
+    /// <param name="dto">Nuevos datos de la atención</param>
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] AppointmentDTO dto)
     {
@@ -152,6 +191,10 @@ public class AppointmentController : ControllerBase
         });
     }
 
+    /// <summary>
+    /// Elimina una atención por su ID.
+    /// </summary>
+    /// <param name="id">ID de la atención a eliminar</param>
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
