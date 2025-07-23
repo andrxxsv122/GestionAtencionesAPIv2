@@ -1,0 +1,270 @@
+@baseUrl = https://localhost:7161
+@apiKey = 123456
+
+############ PACIENTES ############
+
+### GET - Obtener todos los pacientes
+GET {{baseUrl}}/api/Patient
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Obtener paciente por ID
+GET {{baseUrl}}/api/Patient/1
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Buscar paciente por RUT
+GET {{baseUrl}}/api/Patient/rut/12345678-9
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### POST - Crear nuevo paciente
+POST {{baseUrl}}/api/Patient
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "patient_FirstName": "Juan",
+  "patient_LastName": "Pérez",
+  "patient_RUT": "2212345678-9",
+  "patient_DateOfBirth": "1990-05-01T00:00:00",
+  "patient_Gender": "M",
+  "patient_Phone": "912345678",
+  "patient_Email": "juan.perez@example.com",
+  "patient_AddressLine1": "Calle Falsa 123",
+  "patient_AddressLine2": null,
+  "patient_City": "Santiago",
+  "patient_State": "RM",
+  "patient_PostalCode": "8320000"
+}
+
+###
+
+### PUT - Actualizar paciente
+PUT {{baseUrl}}/api/Patient/1
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "patient_Id": 1,
+  "patient_FirstName": "Juan actualizado2",
+  "patient_LastName": "Pérez",
+  "patient_RUT": "12345678-9",
+  "patient_DateOfBirth": "1990-05-01T00:00:00",
+  "patient_Gender": "M",
+  "patient_Phone": "912345678",
+  "patient_Email": "juan.actualizado@example.com",
+  "patient_AddressLine1": "Nueva dirección",
+  "patient_AddressLine2": null,
+  "patient_City": "Santiago",
+  "patient_State": "RM",
+  "patient_PostalCode": "8320000"
+}
+
+###
+
+### DELETE - Eliminar paciente
+DELETE {{baseUrl}}/api/Patient/1
+x-api-key: {{apiKey}}
+
+############ ESPECIALIDADES ############
+
+### GET - Obtener todas las especialidades
+GET {{baseUrl}}/api/Speciality
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Obtener especialidad por ID
+GET {{baseUrl}}/api/Speciality/1
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### POST - Crear nueva especialidad
+POST {{baseUrl}}/api/Speciality
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "speciality_Name": "Kinesiología",
+  "speciality_Description": "Tratamiento de lesiones o disfunciones"
+}
+
+###
+
+### PUT - Actualizar especialidad
+PUT {{baseUrl}}/api/Speciality/1
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "speciality_Id": 1,
+  "speciality_Name": "Cardiología avanzada",
+  "speciality_Description": "Tratamiento especializado del corazón"
+}
+
+###
+
+### DELETE - Eliminar especialidad
+DELETE {{baseUrl}}/api/Speciality/1
+x-api-key: {{apiKey}}
+
+############ DOCTORES ############
+
+### GET todos los doctores
+GET {{baseUrl}}/api/Doctor
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET por ID
+GET {{baseUrl}}/api/Doctor/1
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET por LicenseNumber
+GET {{baseUrl}}/api/Doctor/license/ABC123
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### POST - Crear doctor
+POST {{baseUrl}}/api/Doctor
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "doctor_FirstName": "Juan",
+  "doctor_LastName": "Perez",
+  "doctor_Email": "juan.perez@example.com",
+  "doctor_Phone": "912345678",
+  "doctor_LicenseNumber": "ABC123",
+  "specialityId": 1
+}
+
+###
+
+### PUT - Actualizar doctor
+PUT {{baseUrl}}/api/Doctor/1
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "doctor_FirstName": "Juan actualizado",
+  "doctor_LastName": "Perez",
+  "doctor_Email": "juan.perez@example.com",
+  "doctor_Phone": "912345678",
+  "doctor_LicenseNumber": "ABC123",
+  "specialityId": 1
+}
+
+###
+
+### DELETE doctor
+DELETE {{baseUrl}}/api/Doctor/1
+x-api-key: {{apiKey}}
+
+############ ATENCIONES ############
+
+### GET - Obtener todas las atenciones
+GET {{baseUrl}}/api/Appointment
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Obtener atención por ID
+GET {{baseUrl}}/api/Appointment/1
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Atenciones por fecha
+GET {{baseUrl}}/api/Appointment/date/2025-07-18
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Atenciones por doctor
+GET {{baseUrl}}/api/Appointment/doctor/1
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Atenciones por paciente
+GET {{baseUrl}}/api/Appointment/patient/1
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Atenciones por especialidad
+GET {{baseUrl}}/api/Appointment/speciality/1
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### GET - Promedio duración por especialidad
+GET {{baseUrl}}/api/Appointment/average-duration/1
+Accept: application/json
+x-api-key: {{apiKey}}
+
+###
+
+### POST - Crear nueva atención
+POST {{baseUrl}}/api/Appointment
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "doctorId": 1,
+  "patientId": 1,
+  "specialityId": 1,
+  "appointment_StartUtc": "2025-07-18T10:00:00",
+  "appointment_EndUtc": "2025-07-18T10:30:00",
+  "appointment_Notes": "Consulta general",
+  "appointment_Diagnosis": "Diagnosis"
+}
+
+###
+
+### PUT - Actualizar atención
+PUT {{baseUrl}}/api/Appointment/1
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "appointment_Id": 1,
+  "doctorId": 1,
+  "patientId": 1,
+  "specialityId": 1,
+  "appointment_StartUtc": "2025-07-18T11:00:00",
+  "appointment_EndUtc": "2025-07-18T11:30:00",
+  "appointment_Notes": "Consulta actualizada",
+  "appointment_Diagnosis": "Diagnosis"
+}
+
+###
+
+### DELETE - Eliminar atención
+DELETE {{baseUrl}}/api/Appointment/2
+x-api-key: {{apiKey}}
+
+###
